@@ -2,11 +2,11 @@
 
 #include <queue>
 #include <seastar/core/file.hh>
+#include <seastar/core/queue.hh>
 #include <seastar/core/sharded.hh>
 
 #include "common.h"
 #include "paths.h"
-
 
 class block_cmp_greater {
 public:
@@ -48,4 +48,19 @@ private:
   seastar::sstring input_file_path;
   seastar::file input_file{};
   unsigned current_tmp_file_id{0};
+};
+
+class merging_service : public seastar::sharded<merging_service> {
+
+public:
+  merging_service(const paths &paths, unsigned int number_of_files)
+      : paths_(paths), number_of_files(number_of_files) {
+  }
+
+  seastar::future<> run(bool is_final_merge = false);
+  seastar::future<> stop();
+
+private:
+  unsigned int number_of_files;
+  const paths paths_;
 };

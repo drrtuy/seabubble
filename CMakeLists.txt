@@ -1,11 +1,11 @@
 
 cmake_minimum_required(VERSION 3.28)
 
-project(ExternalSorting)
+project(SeaBubble)
 
 set(CMAKE_CXX_STANDARD 23)
 
-set(SEASTAR_REPO_PATH "" CACHE PATH "Seastar lib repo path")
+set(SEASTAR_REPO_PATH "" CACHE PATH "Seastar runtime repo path")
 if(SEASTAR_REPO_PATH STREQUAL "")
   message(FATAL_ERROR "Set -DSEASTAR_REPO_PATH=path")
 else()

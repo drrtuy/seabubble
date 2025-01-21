@@ -48,7 +48,7 @@ seastar::future<> run_fill(seastar::file f, seastar::sstring output_file_name,
       auto wbuf = allocate_and_fill_buffer();
 
       size_t pos = id * BLOCK_LEN * number_of_blocks + run * BLOCK_LEN;
-
+      
       return f.dma_write(pos, wbuf.get(), BLOCK_LEN).discard_result();
     });
   });
