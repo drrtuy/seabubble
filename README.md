@@ -2,7 +2,10 @@
 
 ## Repo artifacts
 `bubbles_gen` - generates files of lexigraphically sortable 4096 blocks.
+
 `seabubble` - shared Priority Queue based 3 phase sorting. First produce multiple sorted runs, then merge separate sorted runs into <number_of_shards> merged sorted runs and finaly merge <number_of_shards> merged sorted runs into a single file.
+
+`bubbles_check` - checks whether the file is sorted according with the order defined by the comparators.
 
 ## Build
 

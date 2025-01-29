@@ -8,15 +8,15 @@
 #include "common.h"
 #include "paths.h"
 
-class block_cmp_greater {
+class block_cmp_lower {
 public:
   bool operator()(block &x, block &y) {
-    return strncmp(x.get(), y.get(), BLOCK_LEN) > 0;
+    return memcmp(x.get(), y.get(), BLOCK_LEN) > 0;
   }
 };
 
 using blocks_pq =
-    std::priority_queue<block, std::vector<block>, block_cmp_greater>;
+    std::priority_queue<block, std::vector<block>, block_cmp_lower>;
 
 using blocks_q_vector = std::vector<seastar::queue<block>>;
 using block_queue_id = std::pair<block, unsigned>;
@@ -24,7 +24,7 @@ using block_queue_id = std::pair<block, unsigned>;
 class block_queue_id_greater {
 public:
   bool operator()(block_queue_id &x, block_queue_id &y) {
-    return strncmp(x.first.get(), y.first.get(), BLOCK_LEN) > 0;
+    return block_cmp_lower()(x.first, y.first);
   }
 };
 

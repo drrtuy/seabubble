@@ -140,7 +140,6 @@ seastar::future<> merging_service::run(bool is_final_merge) {
   }
   seastar::semaphore queue_read_finished{0};
 
-  auto &input_file_path = paths_.input_file_path;
   auto &tmp_dir_path = paths_.tmp_dir_path;
   auto tmp_file_name_fn =
       (is_final_merge) ? merging_file_name : sorted_run_file_name;

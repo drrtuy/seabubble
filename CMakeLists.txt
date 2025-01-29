@@ -25,4 +25,6 @@ target_link_libraries (seabubble Seastar::seastar)
 add_executable (bubbles_gen bubbles_gen.cpp)
 target_link_libraries (bubbles_gen Seastar::seastar)
 
+add_executable (bubbles_check bubbles_check.cpp)
+target_link_libraries (bubbles_check Seastar::seastar)
 
